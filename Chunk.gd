@@ -71,9 +71,9 @@ func BuildGeometry():
   var w2=w/2.0
 
   
-  for z in range(-10*cnt,10*cnt):
-    for y in range(-10*cnt,10*cnt):
-      for x in range(-10*cnt,10*cnt):
+  for z in range(-2*cnt,2*cnt):
+    for y in range(-2*cnt,2*cnt):
+      for x in range(-2*cnt,2*cnt):
         var b=GetBlock(x,y,z)
         var btop=GetBlock(x,y+1,z)
         var bbot=GetBlock(x,y-1,z)
