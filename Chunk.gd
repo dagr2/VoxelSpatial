@@ -33,30 +33,37 @@ func clicked_at(hit):
   var bpos=Vector3(round(center.x),round(center.y),round(center.z))
   var bnum=Vector3(round(center.x*8),round(center.y*8),round(center.z*8))
   var side=get_side(norm)
+  var v=0
+  if hit.button==1:
+     v=1
   if side==0:
-    SetBlock(bnum.x,bnum.y+1,bnum.z,1)
+    SetBlock(bnum.x,bnum.y+v,bnum.z,v)
   if side==1:
-    SetBlock(bnum.x,bnum.y-1,bnum.z,1)
+    SetBlock(bnum.x,bnum.y-v,bnum.z,v)
   if side==2:
-    SetBlock(bnum.x,bnum.y,bnum.z-1,1)
+    SetBlock(bnum.x,bnum.y,bnum.z-v,v)
   if side==3:
-    SetBlock(bnum.x,bnum.y,bnum.z+1,1)
+    SetBlock(bnum.x,bnum.y,bnum.z+v,v)
   if side==4:
-    SetBlock(bnum.x-1,bnum.y,bnum.z,1)
+    SetBlock(bnum.x-v,bnum.y,bnum.z,v)
   if side==5:
-    SetBlock(bnum.x+1,bnum.y,bnum.z,1)
+    SetBlock(bnum.x+v,bnum.y,bnum.z,v)
 
   print("Global pos: "+str(pos))
   print("Local pos: "+str(lpos))
   print("Center pos: "+str(center))
   print("Block pos: "+str(bpos))
   print("Block num: "+str(bnum))
+  print("Button: "+str(hit.button))
 
   #BuildGeometry()
-
+var threads=[]
 func SetBlock(x,y,z,v):
+  var t = Thread.new()
+  threads.append(t)
   blocks[str(x)+","+str(y)+","+str(z)]=v
-  BuildGeometry()
+  t.start(self,"BuildGeometry")
+  #BuildGeometry()
   
 func GetBlock(x,y,z):
   if blocks.has(str(x)+","+str(y)+","+str(z)):
@@ -64,7 +71,7 @@ func GetBlock(x,y,z):
   else:
     return 0
     
-func BuildGeometry():
+func BuildGeometry(i):
   var verts=[]
   var cnt=8
   var w=BlockWidth # 1.0/cnt

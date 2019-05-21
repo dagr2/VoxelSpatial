@@ -20,25 +20,31 @@ func _ready():
   
 func test_ray():
   var ray=$Camera/RayCast
+  var target=get_parent().get_node("Target")
   if ray.is_colliding():
+    target.show()
     hit["collider"]=ray.get_collider()
     hit["position"]=ray.get_collision_point()
     hit["normal"]=ray.get_collision_normal()
-    get_parent().get_node("Target").translation=ray.get_collision_point()
+    target.translation=ray.get_collision_point()
   else:
+    target.hide()
     hit={}
+    
     
 func _input(event):
   if event is InputEventMouseButton:
     if event.is_pressed():
+      var button = event.button_index
       if not hit.size()==0 and hit.collider is StaticBody:
+        hit.button=button
         if hit.collider.has_method("clicked_at"):
           hit.collider.clicked_at(hit)
         print(hit)
         
   if event is InputEventMouseMotion:
-    pitch -=event.relative.x*Sens
-    yaw -=event.relative.y*Sens      
+    pitch -=event.relative.x*Sens*.1
+    yaw -=event.relative.y*Sens*.1      
 
 func _process(delta):
   test_ray()
@@ -73,7 +79,7 @@ func _process(delta):
   
   move_and_slide(mov)
   mov=(1-Friction)*mov
-  $Label.text=str(translation)
+  $Label.text=str(translation)+", "+str(pitch)+", "+str(yaw)
 
   
 

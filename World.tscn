@@ -21,14 +21,13 @@ emission_on_uv2 = false
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.833033, 0.351124, -0.427513, 0, 0.772768, 0.634688, 0.553223, -0.528717, 0.643742, 0, 1.45568, 0 )
 light_color = Color( 1, 0.980392, 0.960784, 1 )
-light_energy = 2.0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00449, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79224, 5.2644 )
 script = ExtResource( 2 )
-Sens = 0.005
-Accel = 0.4
+Sens = 0.01
+Accel = 0.08
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
 
@@ -36,6 +35,6 @@ Accel = 0.4
 visible = false
 
 [node name="Target" type="MeshInstance" parent="."]
-transform = Transform( 0.0285716, 0, 0, 0, 0.0285716, 0, 0, 0, 0.0285716, 0, 0, 0 )
+transform = Transform( 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
