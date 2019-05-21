@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=4]
+
+[node name="World" type="Spatial"]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.833033, 0.351124, -0.427513, 0, 0.772768, 0.634688, 0.553223, -0.528717, 0.643742, 0, 1.45568, 0 )
+light_color = Color( 1, 0.980392, 0.960784, 1 )
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624463, 0 )
+script = ExtResource( 2 )
+Sens = 0.01
+Accel = 0.6
+
+[node name="Level" parent="." instance=ExtResource( 3 )]
+
+[node name="IngameMenu" parent="." instance=ExtResource( 4 )]
+visible = false
