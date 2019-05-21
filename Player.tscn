@@ -3,8 +3,8 @@
 [ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.628419
-height = 1.39281
+radius = 0.329804
+height = 0.895115
 
 [sub_resource type="ProceduralSky" id=2]
 
@@ -16,7 +16,7 @@ glow_enabled = true
 [node name="Player" type="KinematicBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 2.52517, -0.163186 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]

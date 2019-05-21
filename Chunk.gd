@@ -105,6 +105,7 @@ func BuildGeometry():
   st.begin(Mesh.PRIMITIVE_TRIANGLES)
   for vert in verts:
     st.add_vertex(vert)
+  st.generate_normals()
   st.set_material(mat)        
   $MeshInstance.mesh=st.commit()
       

@@ -24,6 +24,7 @@ func test_ray():
     hit["collider"]=ray.get_collider()
     hit["position"]=ray.get_collision_point()
     hit["normal"]=ray.get_collision_normal()
+    get_parent().get_node("Target").translation=ray.get_collision_point()
   else:
     hit={}
     
