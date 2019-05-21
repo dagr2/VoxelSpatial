@@ -1,6 +1,8 @@
 tool
 extends StaticBody
 
+export(float) var BlockWidth=1.0/8
+
 var blocks = {}
 var mat = preload("res://mat1.tres")
 
@@ -10,7 +12,17 @@ func _ready():
   SetBlock(2,0,0,1)
   SetBlock(3,1,0,1)
 
-
+func clicked_at(hit):
+  var pos=hit.position
+  var lpos=to_local(pos)
+  var norm=hit.normal
+  var center = lpos-norm*BlockWidth/2.0
+  var bpos=Vector3(round(center.x),round(center.y),round(center.z))
+  var bnum=Vector3(round(center.x/8),round(center.y/8),round(center.z/8))
+  print("Global pos: "+str(pos))
+  print("Local pos: "+str(lpos))
+  print("Block pos: "+str(bpos))
+  print("Block num: "+str(bnum))
 
   #BuildGeometry()
 
@@ -27,7 +39,7 @@ func GetBlock(x,y,z):
 func BuildGeometry():
   var verts=[]
   var cnt=8
-  var w=1.0/cnt
+  var w=BlockWidth # 1.0/cnt
   var w2=w/2.0
 
   

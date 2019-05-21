@@ -32,6 +32,8 @@ func _input(event):
   if event is InputEventMouseButton:
     if event.is_pressed():
       if not hit.size()==0 and hit.collider is StaticBody:
+        if hit.collider.has_method("clicked_at"):
+          hit.collider.clicked_at(hit)
         print(hit)
         
   if event is InputEventMouseMotion:
