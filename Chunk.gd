@@ -29,8 +29,8 @@ func BuildGeometry():
   var w=1.0/cnt
   var w2=w/2.0
   var st = SurfaceTool.new()
-  st.set_material(mat)
   st.begin(Mesh.PRIMITIVE_TRIANGLES)
+  st.set_material(mat)
   
   for z in range(0,cnt):
     for y in range(0,cnt):

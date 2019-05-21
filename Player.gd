@@ -36,10 +36,6 @@ func _process(delta):
 
   if Input.is_action_pressed("reset"):
     get_tree().reload_current_scene()
-    
-  if Input.is_key_pressed(KEY_E):
-    $IngameMenu.show()
-    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
   rotation.y=pitch
   $Camera.rotation.x=yaw

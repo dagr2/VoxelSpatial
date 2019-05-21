@@ -16,8 +16,8 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624463, 0 )
 script = ExtResource( 2 )
-Sens = 0.01
-Accel = 0.6
+Sens = 0.005
+Accel = 0.4
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
 
