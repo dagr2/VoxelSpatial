@@ -10,5 +10,7 @@ script = ExtResource( 1 )
 
 [node name="Wand" parent="." instance=ExtResource( 2 )]
 transform = Transform( 5.55571, 0, 0, 0, 0.0439382, 0, 0, 0, 5.55571, 0, -0.179226, 0 )
+collision_layer = 3
 
 [node name="Chunk" parent="." instance=ExtResource( 3 )]
+collision_layer = 3

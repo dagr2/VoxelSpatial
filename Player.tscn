@@ -26,6 +26,7 @@ environment = SubResource( 3 )
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -10 )
+collision_mask = 2
 
 [node name="IngameMenu" parent="." instance=ExtResource( 1 )]
 visible = false
