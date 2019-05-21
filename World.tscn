@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -6,13 +6,6 @@
 [ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereMesh" id=1]
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 1, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-flags_transparent = true
-albedo_color = Color( 0, 0.717647, 1, 0.592157 )
 
 [node name="World" type="Spatial"]
 
@@ -37,8 +30,3 @@ visible = false
 transform = Transform( 0.0873172, 0, 0, 0, 0.0873172, 0, 0, 0, 0.0873172, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415372, 0.418998, 6.21061 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )

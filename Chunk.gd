@@ -7,15 +7,8 @@ var blocks = {}
 var mat = preload("res://mat1.tres")
 
 func _ready():
-  SetBlock(0,0,0,1)
-  SetBlock(7,0,0,1)
-  SetBlock(7,0,7,1)
-  SetBlock(0,0,7,1)
+  SetBlock(3,3,3,1)
 
-  SetBlock(0,7,0,1)
-  SetBlock(7,7,0,1)
-  SetBlock(7,7,7,1)
-  SetBlock(0,7,7,1)
 
 func get_side(norm):
     if norm==Vector3(0,1,0):
@@ -78,9 +71,9 @@ func BuildGeometry():
   var w2=w/2.0
 
   
-  for z in range(0,cnt):
-    for y in range(0,cnt):
-      for x in range(0,cnt):
+  for z in range(-10*cnt,10*cnt):
+    for y in range(-10*cnt,10*cnt):
+      for x in range(-10*cnt,10*cnt):
         var b=GetBlock(x,y,z)
         var btop=GetBlock(x,y+1,z)
         var bbot=GetBlock(x,y-1,z)
