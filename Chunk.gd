@@ -8,19 +8,54 @@ var mat = preload("res://mat1.tres")
 
 func _ready():
   SetBlock(0,0,0,1)
-  SetBlock(1,1,0,1)
-  SetBlock(2,0,0,1)
-  SetBlock(3,1,0,1)
+  SetBlock(7,0,0,1)
+  SetBlock(7,0,7,1)
+  SetBlock(0,0,7,1)
+
+  SetBlock(0,7,0,1)
+  SetBlock(7,7,0,1)
+  SetBlock(7,7,7,1)
+  SetBlock(0,7,7,1)
+
+func get_side(norm):
+    if norm==Vector3(0,1,0):
+        return 0
+    if norm==Vector3(0,-1,0):
+        return 1
+    if norm==Vector3(0,0,-1):
+        return 2
+    if norm==Vector3(0,0,1):
+        return 3
+    if norm==Vector3(-1,0,0):
+        return 4
+    if norm==Vector3(1,0,0):
+        return 5
 
 func clicked_at(hit):
   var pos=hit.position
   var lpos=to_local(pos)
+
   var norm=hit.normal
   var center = lpos-norm*BlockWidth/2.0
   var bpos=Vector3(round(center.x),round(center.y),round(center.z))
-  var bnum=Vector3(round(center.x/8),round(center.y/8),round(center.z/8))
+  var bnum=Vector3(round(center.x*8),round(center.y*8),round(center.z*8))
+  var side=get_side(norm)
+  if side==0:
+    SetBlock(bnum.x,bnum.y+1,bnum.z,1)
+  if side==1:
+    SetBlock(bnum.x,bnum.y-1,bnum.z,1)
+  if side==2:
+    SetBlock(bnum.x,bnum.y,bnum.z-1,1)
+  if side==3:
+    SetBlock(bnum.x,bnum.y,bnum.z+1,1)
+  if side==4:
+    SetBlock(bnum.x-1,bnum.y,bnum.z,1)
+  if side==5:
+    SetBlock(bnum.x+1,bnum.y,bnum.z,1)
+
   print("Global pos: "+str(pos))
   print("Local pos: "+str(lpos))
+  print("Center pos: "+str(center))
   print("Block pos: "+str(bpos))
   print("Block num: "+str(bnum))
 

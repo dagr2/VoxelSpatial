@@ -73,6 +73,7 @@ func _process(delta):
   
   move_and_slide(mov)
   mov=(1-Friction)*mov
+  $Label.text=str(translation)
 
   
 

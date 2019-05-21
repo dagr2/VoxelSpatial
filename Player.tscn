@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.329804
-height = 0.895115
+height = 0.286632
 
 [sub_resource type="ProceduralSky" id=2]
 
@@ -16,11 +16,11 @@ glow_enabled = true
 [node name="Player" type="KinematicBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 2.52517, -0.163186 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.532459, -0.163186 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 3.35714, 0 )
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.825975, -0.181305 )
 environment = SubResource( 3 )
 
 [node name="RayCast" type="RayCast" parent="Camera"]
@@ -30,3 +30,7 @@ collision_mask = 2
 
 [node name="IngameMenu" parent="." instance=ExtResource( 1 )]
 visible = false
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0

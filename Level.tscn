@@ -14,3 +14,7 @@ collision_layer = 3
 
 [node name="Chunk" parent="." instance=ExtResource( 3 )]
 collision_layer = 3
+
+[node name="Chunk2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.997468 )
+collision_layer = 3
