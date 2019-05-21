@@ -6,11 +6,11 @@
 radius = 0.628419
 height = 1.39281
 
-[sub_resource type="ProceduralSky" id=3]
+[sub_resource type="ProceduralSky" id=2]
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=3]
 background_mode = 2
-background_sky = SubResource( 3 )
+background_sky = SubResource( 2 )
 glow_enabled = true
 
 [node name="Player" type="KinematicBody"]
@@ -21,9 +21,10 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 3.35714, 0 )
-environment = SubResource( 2 )
+environment = SubResource( 3 )
 
 [node name="RayCast" type="RayCast" parent="Camera"]
+enabled = true
 cast_to = Vector3( 0, 0, -10 )
 
 [node name="IngameMenu" parent="." instance=ExtResource( 1 )]
