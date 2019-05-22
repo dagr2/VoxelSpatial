@@ -17,6 +17,9 @@ var colnorm
 func _ready():
   Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   
+  $Camera/Cross.position.x=OS.window_size.x/2
+  $Camera/Cross.position.y=OS.window_size.y/2
+  
   
 func test_ray():
   var ray=$Camera/RayCast
