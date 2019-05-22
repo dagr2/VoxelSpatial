@@ -7,7 +7,7 @@ var blocks = {}
 var mat = preload("res://mat1.tres")
 
 func _ready():
-  SetBlock(3,3,3,1)
+  pass
 
 
 func get_side(norm):
@@ -49,16 +49,23 @@ func clicked_at(hit):
   if side==5:
     SetBlock(bnum.x+v,bnum.y,bnum.z,v)
 
-  print("Global pos: "+str(pos))
-  print("Local pos: "+str(lpos))
-  print("Center pos: "+str(center))
-  print("Block pos: "+str(bpos))
-  print("Block num: "+str(bnum))
-  print("Button: "+str(hit.button))
+  #print("Global pos: "+str(pos))
+  #print("Local pos: "+str(lpos))
+  #print("Center pos: "+str(center))
+  #print("Block pos: "+str(bpos))
+  #print("Block num: "+str(bnum))
+  #print("Button: "+str(hit.button))
 
   #BuildGeometry()
 var threads=[]
 func SetBlock(x,y,z,v):
+  if x==-0:
+    x=0
+  if y==-0:
+    y=0
+  if z==-0:
+    z=0
+  print("Set block at "+str(x)+", "+str(y)+", "+str(z)+", ")
   var t = Thread.new()
   threads.append(t)
   blocks[str(x)+","+str(y)+","+str(z)]=v
@@ -76,7 +83,7 @@ func BuildGeometry(i):
   var cnt=8
   var w=BlockWidth # 1.0/cnt
   var w2=w/2.0
-
+  var drawn=0
   
   for z in range(-2*cnt,2*cnt):
     for y in range(-2*cnt,2*cnt):
@@ -88,9 +95,10 @@ func BuildGeometry(i):
         var bback=GetBlock(x,y,z+1)
         var bleft=GetBlock(x-1,y,z)
         var bright=GetBlock(x+1,y,z)
-        
+        if b>0:
+            drawn+=1
         #top
-        if b>0 and btop<1:
+        if b>0 and btop<1:  
           verts.append(Vector3( w*x-w2, y*w+w2, w*z-w2))
           verts.append(Vector3( w*x+w2, y*w+w2, w*z-w2))
           verts.append(Vector3( w*x-w2, y*w+w2, w*z+w2))
@@ -155,4 +163,4 @@ func BuildGeometry(i):
   st.generate_normals()
   st.set_material(mat)        
   $MeshInstance.mesh=st.commit()
-      
+  print(str(drawn)+" blocks drawn")    

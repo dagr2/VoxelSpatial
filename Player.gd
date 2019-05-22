@@ -44,7 +44,11 @@ func _input(event):
         
   if event is InputEventMouseMotion:
     pitch -=event.relative.x*Sens*.1
-    yaw -=event.relative.y*Sens*.1      
+    yaw -=event.relative.y*Sens*.1
+    if hit.size()==0:
+      $Label2.text=""
+    else:      
+      $Label2.text=str(hit.position)  
 
 func _process(delta):
   test_ray()
@@ -80,6 +84,7 @@ func _process(delta):
   move_and_slide(mov)
   mov=(1-Friction)*mov
   $Label.text=str(translation)+", "+str(pitch)+", "+str(yaw)
+  
 
   
 
