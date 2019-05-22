@@ -5,6 +5,8 @@ export(float) var BlockWidth=1.0/8
 
 var blocks = {}
 var mat = preload("res://mat1.tres")
+var oct = preload("res://octree.gd").new(Vector3(-32,-32,-32),Vector3(64,64,64))
+
 
 func _ready():
   pass
@@ -67,12 +69,14 @@ func SetBlock(x,y,z,v):
     z=0
   print("Set block at "+str(x)+", "+str(y)+", "+str(z)+", ")
   var t = Thread.new()
-  threads.append(t)
-  blocks[str(x)+","+str(y)+","+str(z)]=v
-  t.start(self,"BuildGeometry")
-  #BuildGeometry()
+  #threads.append(t)
+  #blocks[str(x)+","+str(y)+","+str(z)]=v
+  oct.set_block(Vector3(x,y,z),v)
+  #t.start(self,"BuildGeometry")
+  BuildGeometry(0)
   
 func GetBlock(x,y,z):
+  return oct.get_block(Vector3(x,y,z))
   if blocks.has(str(x)+","+str(y)+","+str(z)):
     return blocks[str(x)+","+str(y)+","+str(z)]
   else:
@@ -85,10 +89,14 @@ func BuildGeometry(i):
   var w2=w/2.0
   var drawn=0
   
-  for z in range(-2*cnt,2*cnt):
-    for y in range(-2*cnt,2*cnt):
-      for x in range(-2*cnt,2*cnt):
-        var b=GetBlock(x,y,z)
+  var all=oct.get_blocks()
+  for block in all:
+    #var block=all[i]
+    var x=block.pos.x
+    var y=block.pos.y
+    var z=block.pos.z
+    if true:    
+        var b=block.value
         var btop=GetBlock(x,y+1,z)
         var bbot=GetBlock(x,y-1,z)
         var bfront=GetBlock(x,y,z-1)

@@ -4,23 +4,13 @@ extends Spatial
 # var a = 2
 # var b = "text"
 var arr={}
-var octree = preload("res://Octree.gd").new()
+#var octree = preload("res://Octree.gd").new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass#octree.set_block(Vector3(2,4,1),1)
     
 func _input(event):
     if event is InputEventKey and event.pressed:
-        if event.scancode==KEY_F1:
-          octree.set_block(Vector3(2,4,1),1)
-          octree.set_block(Vector3(12,14,1),1)
-          octree.set_block(Vector3(2,14,9),1)
-          octree.set_block(Vector3(0,1,1),1)
-          octree.set_block(Vector3(8,9,10),1)
-          
-        if event.scancode==KEY_F2:
-          var blocks=octree.get_blocks()
-          print(blocks)
           
         if event.scancode==KEY_0:
           arr[0]="0"
