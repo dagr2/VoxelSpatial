@@ -57,6 +57,8 @@ func _input(event):
       $Label2.text=str(hit.position)  
 
 func _process(delta):
+  $Camera/Cross.position.x=OS.window_size.x/2
+
   if Input.is_action_just_pressed("ui_focus_next"):
     if Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
       Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

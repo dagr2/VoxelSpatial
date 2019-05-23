@@ -36,7 +36,10 @@ func _input(event):
           
         if event.scancode==KEY_F1:
             pass
-          #$Level.load_chunk()        
+          #$Level.load_chunk()      
+        
+        if event.scancode==KEY_F11:
+            OS.window_fullscreen = !OS.window_fullscreen        
           
         if event.scancode==KEY_F2:
             pass

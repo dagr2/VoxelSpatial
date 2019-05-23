@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Level.tscn" type="PackedScene" id=3]
-[ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -27,14 +26,11 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646055, -0.892629 )
 Sens = 0.01
-Accel = 0.4
+Accel = 0.8
 Friction = 0.05
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
-
-[node name="IngameMenu" parent="." instance=ExtResource( 4 )]
-visible = false
 
 [node name="Target" type="MeshInstance" parent="."]
 transform = Transform( 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0 )
