@@ -6,18 +6,41 @@ extends Spatial
 var arr={}
 #var octree = preload("res://Octree.gd").new()
 # Called when the node enters the scene tree for the first time.
+var last_mouse_mode
+
 func _ready():
     pass#octree.set_block(Vector3(2,4,1),1)
     
 func _input(event):
+    if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
+      return
+    
     if event is InputEventKey and event.pressed:
-          
-          
         if event.scancode==KEY_F1:
-          $Level.load_chunk()
+          last_mouse_mode=Input.get_mouse_mode()
+          Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+          $OpenDialog.invalidate()
+          $OpenDialog.filename=""
+          $OpenDialog.popup_centered()
+         
+          #$Level.load_chunk()
           
         if event.scancode==KEY_F2:
-          $Level.save_chunk()
+          last_mouse_mode=Input.get_mouse_mode()
+          Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+          $SaveDialog.invalidate()
+          $SaveDialog.filename=""
+          $SaveDialog.popup_centered()
+          #$Level.load_chunk()
+
+          
+        if event.scancode==KEY_F1:
+            pass
+          #$Level.load_chunk()        
+          
+        if event.scancode==KEY_F2:
+            pass
+          #$Level.save_chunk()
 
         if event.scancode==KEY_F5:
           OS.window_fullscreen = !OS.window_fullscreen
@@ -40,3 +63,13 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
+
+
+func _on_OpenDialog_file_selected(path):
+    $Level.load_chunk(path)
+    Input.set_mouse_mode(last_mouse_mode)
+
+
+func _on_SaveDialog_file_selected(path):
+    $Level.save_chunk(path)
+    Input.set_mouse_mode(last_mouse_mode)

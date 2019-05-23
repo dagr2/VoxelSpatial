@@ -12,11 +12,11 @@ func _ready():
   chunk.SetBlock(0,0,0,1)
   chunk.BuildGeometry(0)
     #pass
-func save_chunk():
-  chunk.save_chunk()
+func save_chunk(filename):
+  chunk.save_chunk(filename)
 
-func load_chunk():
-  chunk.load_chunk()
+func load_chunk(filename):
+  chunk.load_chunk(filename)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass

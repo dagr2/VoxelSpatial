@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://crosshair.png" type="Texture" id=2]
@@ -7,6 +7,12 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.0496407
 height = 0.002
+
+[sub_resource type="ProceduralSky" id=2]
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+background_sky = SubResource( 2 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -17,11 +23,12 @@ shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.0059399, -0.0114406 )
+environment = SubResource( 3 )
 near = 0.01
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -10 )
+cast_to = Vector3( 0, 0, -100 )
 
 [node name="Cross" type="Sprite" parent="Camera"]
 scale = Vector2( 0.305821, 0.288021 )

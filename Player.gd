@@ -37,6 +37,9 @@ func test_ray():
     
 func _input(event):
   if event is InputEventMouseButton:
+    if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
+      return
+
     if event.pressed:
       var button = event.button_index
       if not hit.size()==0 and hit.collider is StaticBody:
@@ -54,17 +57,20 @@ func _input(event):
       $Label2.text=str(hit.position)  
 
 func _process(delta):
-  test_ray()
-  
-  if Input.is_action_just_pressed("ui_cancel"):
-    get_tree().quit()
-
   if Input.is_action_just_pressed("ui_focus_next"):
     if Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
       Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     else:
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-      
+    
+  if Input.is_action_just_pressed("ui_cancel"):
+    get_tree().quit()   
+            
+  if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
+    return
+    
+  test_ray()
+  
   if Input.is_action_pressed("ui_up"):
     mov -= $Camera.global_transform.basis.z*Accel
   if Input.is_action_pressed("ui_down"):
@@ -80,7 +86,8 @@ func _process(delta):
 
   if Input.is_action_pressed("reset"):
     get_tree().reload_current_scene()
-
+  if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
+    return
   rotation.y=pitch
   $Camera.rotation.x=yaw
   

@@ -10,9 +10,9 @@ var meshInstance=MeshInstance.new()
 var mat = load("res://mat1.tres")
 var oct = load("res://Octree.gd").new(Vector3(-Blocks/2,-Blocks/2,-Blocks/2),Vector3(Blocks,Blocks,Blocks))
 
-func save_chunk():
+func save_chunk(filename):
   var f=File.new()
-  f.open("user://chunk.dat",File.WRITE)
+  f.open(filename,File.WRITE)
   var data={}
   data.blocks=oct.get_blocks()
   var j = to_json(data)
@@ -20,12 +20,12 @@ func save_chunk():
   f.store_line(j)
   f.close()
   
-func load_chunk():
+func load_chunk(filename):
   
   var f=File.new()
-  if f.file_exists("user://chunk.dat"):
+  if f.file_exists(filename):
     oct.clear()
-    f.open("user://chunk.dat",File.READ)
+    f.open(filename,File.READ)
     #var data={}
     var l = f.get_line()
     var data=parse_json(l)
