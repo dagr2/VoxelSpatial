@@ -12,6 +12,16 @@ func _ready():
 func _input(event):
     if event is InputEventKey and event.pressed:
           
+          
+        if event.scancode==KEY_F1:
+          $Level.load_chunk()
+          
+        if event.scancode==KEY_F2:
+          $Level.save_chunk()
+
+        if event.scancode==KEY_F5:
+          OS.window_fullscreen = !OS.window_fullscreen
+
         if event.scancode==KEY_0:
           arr[0]="0"
         

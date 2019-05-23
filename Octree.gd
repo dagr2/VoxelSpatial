@@ -95,7 +95,10 @@ func get_block(pos):
     return 0
   else:
     return root.get_block(pos)
-
+    
+func clear():
+  root=Octet.new(position,size)
+      
 func get_blocks():
   var res=[]
   if root!=null:

@@ -10,8 +10,13 @@ var chunk=Chunk.new(Vector3(-cs/2.0,-cs/2.0,-cs/2.0),Vector3(cs,cs,cs))
 func _ready():
   add_child(chunk)
   chunk.SetBlock(0,0,0,1)
+  chunk.BuildGeometry(0)
     #pass
+func save_chunk():
+  chunk.save_chunk()
 
+func load_chunk():
+  chunk.load_chunk()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #  pass

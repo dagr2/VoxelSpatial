@@ -10,6 +10,33 @@ var meshInstance=MeshInstance.new()
 var mat = load("res://mat1.tres")
 var oct = load("res://Octree.gd").new(Vector3(-Blocks/2,-Blocks/2,-Blocks/2),Vector3(Blocks,Blocks,Blocks))
 
+func save_chunk():
+  var f=File.new()
+  f.open("user://chunk.dat",File.WRITE)
+  var data={}
+  data.blocks=oct.get_blocks()
+  var j = to_json(data)
+  j=j.replace("(","[").replace(")","]")
+  f.store_line(j)
+  f.close()
+  
+func load_chunk():
+  
+  var f=File.new()
+  if f.file_exists("user://chunk.dat"):
+    oct.clear()
+    f.open("user://chunk.dat",File.READ)
+    #var data={}
+    var l = f.get_line()
+    var data=parse_json(l)
+    var _blocks = data["blocks"]
+    for b in _blocks:
+      var pos=parse_json(b.pos)
+      print(pos)
+      SetBlock(pos[0],pos[1],pos[2], b.value)
+    f.close()
+    BuildGeometry(0)
+  
 func _init(pos,s):
   oct = preload("res://octree.gd").new(pos,s)  
   add_child(collisionShape)
@@ -65,7 +92,8 @@ func clicked_at(hit):
   #print("Block num: "+str(bnum))
   #print("Button: "+str(hit.button))
 
-  #BuildGeometry()
+  BuildGeometry(0)
+  
 var threads=[]
 func SetBlock(x,y,z,v):
   if x==-0:
@@ -80,7 +108,7 @@ func SetBlock(x,y,z,v):
   #blocks[str(x)+","+str(y)+","+str(z)]=v
   oct.set_block(Vector3(x,y,z),v)
   #t.start(self,"BuildGeometry")
-  BuildGeometry(0)
+  #BuildGeometry(0)
   
 func GetBlock(x,y,z):
   return oct.get_block(Vector3(x,y,z))

@@ -17,7 +17,11 @@ _global_script_class_icons={
 
 config/name="VoxelDraw"
 run/main_scene="res://World.tscn"
-config/icon="res://icon.png"
+config/use_custom_user_dir=true
+config/custom_user_dir_name=".VoxelDraw"
+boot_splash/image="res://Unbenannt.PNG"
+boot_splash/fullsize=false
+config/icon="res://Unbenannt.PNG"
 
 [input]
 
