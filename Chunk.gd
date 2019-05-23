@@ -2,12 +2,13 @@ tool
 extends StaticBody
 
 export(float) var BlockWidth=1.0/8
+export(int) var Blocks=8192
 
 var blocks = {}
-var mat = preload("res://mat1.tres")
-var oct = preload("res://octree.gd").new(Vector3(-32,-32,-32),Vector3(64,64,64))
 var collisionShape = CollisionShape.new()
 var meshInstance=MeshInstance.new()
+var mat = load("res://mat1.tres")
+var oct = load("res://Octree.gd").new(Vector3(-Blocks/2,-Blocks/2,-Blocks/2),Vector3(Blocks,Blocks,Blocks))
 
 func _init(pos,s):
   oct = preload("res://octree.gd").new(pos,s)  
