@@ -6,7 +6,13 @@ export(float) var BlockWidth=1.0/8
 var blocks = {}
 var mat = preload("res://mat1.tres")
 var oct = preload("res://octree.gd").new(Vector3(-32,-32,-32),Vector3(64,64,64))
+var collisionShape = CollisionShape.new()
+var meshInstance=MeshInstance.new()
 
+func _init(pos,s):
+  oct = preload("res://octree.gd").new(pos,s)  
+  add_child(collisionShape)
+  add_child(meshInstance)
 
 func _ready():
   pass
@@ -163,12 +169,12 @@ func BuildGeometry(i):
           verts.append(Vector3( w*x+w2, y*w+w2, w*z-w2))
   var conc=ConcavePolygonShape.new()
   conc.set_faces(verts)
-  $CollisionShape.shape=conc
+  collisionShape.shape=conc
   var st = SurfaceTool.new()
   st.begin(Mesh.PRIMITIVE_TRIANGLES)
   for vert in verts:
     st.add_vertex(vert)
   st.generate_normals()
   st.set_material(mat)        
-  $MeshInstance.mesh=st.commit()
+  meshInstance.mesh=st.commit()
   print(str(drawn)+" blocks drawn")    

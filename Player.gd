@@ -1,6 +1,6 @@
 extends KinematicBody
 
-export(float) var Sens=0.1
+export(float) var Sens=0.01
 export(float) var Accel=0.1
 export(float,0,1) var Friction=0.05
 
@@ -37,7 +37,7 @@ func test_ray():
     
 func _input(event):
   if event is InputEventMouseButton:
-    if event.is_pressed():
+    if event.pressed:
       var button = event.button_index
       if not hit.size()==0 and hit.collider is StaticBody:
         hit.button=button
@@ -86,7 +86,8 @@ func _process(delta):
   
   move_and_slide(mov)
   mov=(1-Friction)*mov
-  $Label.text=str(translation)+", "+str(pitch)+", "+str(yaw)
+  #$Label.text=str(translation)+", "+str(pitch)+", "+str(yaw)
+  $Label.text=str(hit)
   
 
   
