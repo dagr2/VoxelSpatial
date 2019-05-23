@@ -58,6 +58,7 @@ func _input(event):
 
 func _process(delta):
   $Camera/Cross.position.x=OS.window_size.x/2
+  $Camera/Cross.position.y=OS.window_size.y/2
 
   if Input.is_action_just_pressed("ui_focus_next"):
     if Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
