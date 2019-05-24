@@ -9,7 +9,10 @@ var chunkloader
 func _ready():
   chunkloader = ChunkLoader.new()
   add_child(chunkloader)
-  
+
+func get_chunkloader():
+  return chunkloader
+    
 func _input(event):
         if Input.is_action_just_pressed("toggle_fullscreen"):
             OS.window_fullscreen = !OS.window_fullscreen     

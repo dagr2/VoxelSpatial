@@ -13,13 +13,13 @@ var hit={}
 var collider
 var colpos
 var colnorm
-
+var game
 func _ready():
   Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   
   $Camera/Cross.position.x=OS.window_size.x/2
   $Camera/Cross.position.y=OS.window_size.y/2
-  
+  game=get_parent()
   
 func test_ray():
   var ray=$Camera/RayCast

@@ -1,4 +1,5 @@
 extends Spatial
+export(int,2,12) var VisibleChunks = 3
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -19,7 +20,7 @@ func AddChunk(px,pz,chunk):
     chunk.BuildGeometryAsync()
 
 
-var vis=2
+var vis=3
 func thelp(px,pz):
   if !chunks.has([px,pz]):
     var chunk = Chunk.new(Vector3(px,0,pz),Vector3(16,16,16))

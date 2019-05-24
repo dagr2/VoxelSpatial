@@ -35,3 +35,7 @@ func _on_BtnExit_pressed():
 
 func _on_BtnPlay_pressed():
     get_tree().change_scene("res://Game.tscn")
+
+
+func _on_BtnSettings_pressed():
+  get_tree().change_scene("res://Settings.tscn")

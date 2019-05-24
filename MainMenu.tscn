@@ -51,7 +51,6 @@ text = "Play"
 margin_top = 60.0
 margin_right = 63.0
 margin_bottom = 80.0
-disabled = true
 text = "Settings"
 
 [node name="BtnExit" type="Button" parent="CenterContainer/VBoxContainer"]
@@ -61,4 +60,5 @@ margin_bottom = 110.0
 text = "Exit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnPaint" to="." method="_on_BtnPaint_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnPlay" to="." method="_on_BtnPlay_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BtnSettings" to="." method="_on_BtnSettings_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnExit" to="." method="_on_BtnExit_pressed"]
