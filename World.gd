@@ -9,9 +9,12 @@ var arr={}
 var last_mouse_mode
 
 func _ready():
-    pass#octree.set_block(Vector3(2,4,1),1)
+    Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    last_mouse_mode=Input.get_mouse_mode()
     
 func _input(event):
+    $Menu.visible = Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE
+    
     if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
       return
     
@@ -38,8 +41,8 @@ func _input(event):
             pass
           #$Level.load_chunk()      
         
-        if event.scancode==KEY_F11:
-            OS.window_fullscreen = !OS.window_fullscreen        
+        if Input.is_action_just_pressed("toggle_fullscreen"):
+            OS.window_fullscreen = !OS.window_fullscreen              
           
         if event.scancode==KEY_F2:
             pass

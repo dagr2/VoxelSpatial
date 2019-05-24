@@ -21,13 +21,12 @@ script = ExtResource( 1 )
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.833033, 0.351124, -0.427513, 0, 0.772768, 0.634688, 0.553223, -0.528717, 0.643742, 0, 1.45568, 0 )
 light_color = Color( 1, 0.980392, 0.960784, 1 )
+light_energy = 2.0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646055, -0.892629 )
-Sens = 0.01
 Accel = 0.8
-Friction = 0.05
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
@@ -44,7 +43,7 @@ rect_min_size = Vector2( 400, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 popup_exclusive = true
-window_title = "Datei öffnen"
+window_title = "Open a File"
 resizable = true
 mode = 0
 access = 1
@@ -64,5 +63,30 @@ access = 1
 current_dir = "user://"
 current_file = "VoxelSpatial"
 current_path = "user://VoxelSpatial"
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -76.0
+
+[node name="Button" type="Button" parent="Menu"]
+margin_left = 20.0
+margin_top = 19.0
+margin_right = 142.0
+margin_bottom = 58.0
+
+[node name="Button2" type="Button" parent="Menu"]
+margin_left = 160.0
+margin_top = 16.0
+margin_right = 282.0
+margin_bottom = 55.0
+
+[node name="Button3" type="Button" parent="Menu"]
+margin_left = 300.0
+margin_top = 16.0
+margin_right = 422.0
+margin_bottom = 55.0
 [connection signal="file_selected" from="OpenDialog" to="." method="_on_OpenDialog_file_selected"]
 [connection signal="file_selected" from="SaveDialog" to="." method="_on_SaveDialog_file_selected"]

@@ -36,6 +36,7 @@ func test_ray():
     
     
 func _input(event):
+  
   if event is InputEventMouseButton:
     if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
       return
@@ -67,13 +68,15 @@ func _process(delta):
       Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     
   if Input.is_action_just_pressed("ui_cancel"):
-    get_tree().quit()   
+    get_tree().change_scene("res://MainMenu.tscn")
             
   if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
     return
     
   test_ray()
   
+  if Input.is_action_just_pressed("light"):
+    $Camera/SpotLight.visible = !$Camera/SpotLight.visible
   if Input.is_action_pressed("ui_up"):
     mov -= $Camera.global_transform.basis.z*Accel
   if Input.is_action_pressed("ui_down"):

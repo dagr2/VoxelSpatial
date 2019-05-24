@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 510.0 ]
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 480.0
+margin_top = 245.0
+margin_right = 543.0
+margin_bottom = 355.0
+custom_constants/separation = 10
+
+[node name="BtnPaint" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 63.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../BtnExit")
+focus_neighbour_bottom = NodePath("../BtnPlay")
+focus_next = NodePath("../BtnPlay")
+focus_previous = NodePath("../BtnExit")
+text = "Paint"
+
+[node name="BtnPlay" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 63.0
+margin_bottom = 50.0
+focus_neighbour_top = NodePath("../BtnPaint")
+focus_neighbour_bottom = NodePath("../BtnSettings")
+focus_next = NodePath("../BtnSettings")
+focus_previous = NodePath("../BtnPaint")
+disabled = true
+text = "Play"
+
+[node name="BtnSettings" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 63.0
+margin_bottom = 80.0
+disabled = true
+text = "Settings"
+
+[node name="BtnExit" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 63.0
+margin_bottom = 110.0
+text = "Exit"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BtnPaint" to="." method="_on_BtnPaint_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BtnExit" to="." method="_on_BtnExit_pressed"]
