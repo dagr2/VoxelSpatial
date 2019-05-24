@@ -5,12 +5,13 @@
 [ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.514849
-height = 1.34485
+radius = 0.369015
+height = 1.26054
 
 [sub_resource type="ProceduralSky" id=2]
 
 [sub_resource type="Environment" id=3]
+background_mode = 2
 background_sky = SubResource( 2 )
 ambient_light_color = Color( 0.0117647, 0.0235294, 0.0313726, 1 )
 fog_enabled = true
@@ -37,6 +38,7 @@ texture = ExtResource( 2 )
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168568, -0.289772, -0.0444085 )
+visible = false
 light_energy = 3.0
 light_specular = 0.0
 shadow_enabled = true

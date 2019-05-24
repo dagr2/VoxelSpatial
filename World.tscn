@@ -25,11 +25,11 @@ light_energy = 2.0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646055, -0.892629 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.98309, -32.1037 )
 Accel = 0.8
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Target" type="MeshInstance" parent="."]
 transform = Transform( 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0, 0.0181186, 0, 0, 0 )
@@ -43,7 +43,7 @@ rect_min_size = Vector2( 400, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 popup_exclusive = true
-window_title = "Open a File"
+window_title = "Datei öffnen"
 resizable = true
 mode = 0
 access = 1

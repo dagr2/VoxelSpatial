@@ -45,7 +45,6 @@ focus_neighbour_top = NodePath("../BtnPaint")
 focus_neighbour_bottom = NodePath("../BtnSettings")
 focus_next = NodePath("../BtnSettings")
 focus_previous = NodePath("../BtnPaint")
-disabled = true
 text = "Play"
 
 [node name="BtnSettings" type="Button" parent="CenterContainer/VBoxContainer"]
@@ -61,4 +60,5 @@ margin_right = 63.0
 margin_bottom = 110.0
 text = "Exit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnPaint" to="." method="_on_BtnPaint_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BtnPlay" to="." method="_on_BtnPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BtnExit" to="." method="_on_BtnExit_pressed"]
