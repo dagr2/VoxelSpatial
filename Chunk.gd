@@ -38,7 +38,8 @@ func load_chunk(filename):
     BuildGeometry(0)
   
 func _init(pos,s):
-  oct = preload("res://octree.gd").new(pos,s)  
+  var Octree =load("res://Octree.gd")
+  oct = Octree.new(pos,s)  
   add_child(collisionShape)
   add_child(meshInstance)
 
