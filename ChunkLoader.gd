@@ -1,5 +1,5 @@
 extends Spatial
-export(int,2,12) var VisibleChunks = 3
+export(int,2,12) var VisibleChunks = 5
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -26,7 +26,8 @@ func thelp(px,pz):
     var chunk = Chunk.new(Vector3(px,0,pz),Vector3(16,16,16))
     AddChunk(px,pz,chunk)
     chunks[[px,pz]]=chunk
-    add_child(chunk)
+    call_deferred("add_child",chunk)
+    #add_child(chunk)
   
 func testandcreate(px,pz):
   for r in range(vis):
