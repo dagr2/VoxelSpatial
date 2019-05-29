@@ -4,6 +4,10 @@ extends StaticBody
 export(float) var BlockWidth=1.0
 export(int) var Blocks=16
 
+const tcoords=[
+  Vector2(0,0),
+]
+
 var blocks = {}
 var collisionShape = CollisionShape.new()
 var meshInstance=MeshInstance.new()
@@ -64,7 +68,7 @@ func get_side(norm):
 func clicked_at(hit):
   var pos=hit.position
   var lpos=to_local(pos)
-
+  
   var norm=hit.normal
   var center = lpos-norm*BlockWidth/2.0
   var bpos=Vector3(round(center.x),round(center.y),round(center.z))
@@ -72,24 +76,27 @@ func clicked_at(hit):
   bnum=bpos
   var side=get_side(norm)
   var v=-1
+  var n=1
   if hit.button==BUTTON_LEFT:
-     v=1
+     v=hit.slot+1
   elif hit.button==BUTTON_RIGHT:
     v=0
+    n=0
+    
     
   if v>=0:
     if side==0:
-      SetBlock(bnum.x,bnum.y+v,bnum.z,v)
+      SetBlock(bnum.x,bnum.y+n,bnum.z,v)
     if side==1:
-      SetBlock(bnum.x,bnum.y-v,bnum.z,v)
+      SetBlock(bnum.x,bnum.y-n,bnum.z,v)
     if side==2:
-      SetBlock(bnum.x,bnum.y,bnum.z-v,v)
+      SetBlock(bnum.x,bnum.y,bnum.z-n,v)
     if side==3:
-      SetBlock(bnum.x,bnum.y,bnum.z+v,v)
+      SetBlock(bnum.x,bnum.y,bnum.z+n,v)
     if side==4:
-      SetBlock(bnum.x-v,bnum.y,bnum.z,v)
+      SetBlock(bnum.x-n,bnum.y,bnum.z,v)
     if side==5:
-      SetBlock(bnum.x+v,bnum.y,bnum.z,v)
+      SetBlock(bnum.x+n,bnum.y,bnum.z,v)
 
   #print("Global pos: "+str(pos))
   #print("Local pos: "+str(lpos))
@@ -132,8 +139,8 @@ func coord(bt,s,x,y):
   var tx = 1.0/6.0
   var ty=1.0/20.0
   var res=Vector2(0,0)
-  res.x=tx*(s+x)
-  res.y=ty*(bt-1+(1-y))
+  res.x = tx * (s+x*1.0)
+  res.y = ty * (bt-1.0+(1.0-y*1.0))
   return res
     
 func BuildGeometryAsync():
@@ -172,56 +179,56 @@ func BuildGeometry(i):
           verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,0,1,0)])
           verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,0,0,1)])
           
-          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,0,1,1)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,0,0,1)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,0,1,0)])
+          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,0,0,1)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,0,1,0)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,0,1,1)])
         #bottom
         if b>0 and bbot<1:
           verts.append([Vector3( w*x-w2, y*w-w2, w*z-w2),coord(b,1,0,0)])
           verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,1,1,0)])
           verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,1,0,1)])
-          
-          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,1,1,1)])
-          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,1,0,1)])
-          verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,1,1,1)])
+                                                                   
+          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,1,0,1)])
+          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,1,1,1)])
+          verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,1,1,0)])
           
         #front
         if b>0 and bfront<1:
           verts.append([Vector3( w*x-w2, y*w-w2, w*z-w2),coord(b,2,0,0)])
           verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,2,1,0)])
           verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,2,0,1)])
-
-          verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,2,1,1)])
-          verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,2,0,1)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,2,1,0)])
+                                                                   
+          verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,2,0,1)])
+          verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,2,1,0)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,2,1,1)])
         #back
         if b>0 and bback<1:
           verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,3,0,0)])
           verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,3,0,1)])
           verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,3,1,0)])
-
-          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,3,1,1)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,3,1,0)])
-          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,3,0,1)])
+                                                                   
+          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,3,0,1)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,3,1,1)])
+          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,3,1,0)])
         
         #left
         if b>0 and bleft<1:
           verts.append([Vector3( w*x-w2, y*w-w2, w*z-w2),coord(b,4,0,0)])
-          verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,4,0,1)])
-          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,4,1,0)])
-
-          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,4,1,1)])
           verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,4,1,0)])
-          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,4,0,1)])
+          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,4,0,1)])
+                                                                   
+          verts.append([Vector3( w*x-w2, y*w-w2, w*z+w2),coord(b,4,0,1)])
+          verts.append([Vector3( w*x-w2, y*w+w2, w*z-w2),coord(b,4,1,0)])
+          verts.append([Vector3( w*x-w2, y*w+w2, w*z+w2),coord(b,4,1,1)])
         #right
         if b>0 and bright<1:
           verts.append([Vector3( w*x+w2, y*w-w2, w*z-w2),coord(b,5,0,0)])
           verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,5,0,1)])
           verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,5,1,0)])
-
-          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,5,1,1)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,5,1,0)])
-          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,5,0,1)])
+                                                                   
+          verts.append([Vector3( w*x+w2, y*w-w2, w*z+w2),coord(b,5,0,1)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z+w2),coord(b,5,1,1)])
+          verts.append([Vector3( w*x+w2, y*w+w2, w*z-w2),coord(b,5,1,0)])
   var conc=ConcavePolygonShape.new()
   var vertarr=[]
   for v in verts:

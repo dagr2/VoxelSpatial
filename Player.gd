@@ -46,6 +46,7 @@ func _input(event):
         grav_on = !grav_on
         
   if event is InputEventMouseButton:
+    #print(event)
     if Input.get_mouse_mode()==Input.MOUSE_MODE_VISIBLE:
       return
 
@@ -54,14 +55,19 @@ func _input(event):
       if button==BUTTON_LEFT or button==BUTTON_RIGHT:
         if not hit.size()==0 and hit.collider is StaticBody:
           hit.button=button
+          hit.slot=slot
           if hit.collider.has_method("clicked_at"):
             hit.collider.clicked_at(hit)
           print(hit)
           
-        elif button==BUTTON_WHEEL_UP:
-          slot=(slot+1)%10
-        elif button==BUTTON_WHEEL_DOWN:
-          slot=(slot-1)%10
+      if event.button_index==BUTTON_WHEEL_UP:
+        if slot<9:
+          slot+=1      
+          $Inv.slot=slot
+      if event.button_index==BUTTON_WHEEL_DOWN:
+        if slot>0:
+          slot -= 1
+          $Inv.slot=slot
                  
   if event is InputEventMouseMotion:
     pitch -=event.relative.x*Sens*.1

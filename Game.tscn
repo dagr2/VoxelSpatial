@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Settings.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Inv.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -89,5 +90,7 @@ margin_bottom = 55.0
 
 [node name="Settings" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="Inv" parent="." instance=ExtResource( 4 )]
 [connection signal="file_selected" from="OpenDialog" to="." method="_on_OpenDialog_file_selected"]
 [connection signal="file_selected" from="SaveDialog" to="." method="_on_SaveDialog_file_selected"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://g843.png" type="Texture" id=2]
 [ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://texmap.png" type="Texture" id=4]
+[ext_resource path="res://Inv.tscn" type="PackedScene" id=4]
+[ext_resource path="res://texmap.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.369015
@@ -59,21 +60,7 @@ margin_top = 20.0
 margin_right = 40.0
 margin_bottom = 34.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Sprite" type="Sprite" parent="HBoxContainer"]
-position = Vector2( 16, -14 )
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 16, 16 )
-region_filter_clip = true
-
-[node name="Sprite2" type="Sprite" parent="HBoxContainer"]
-position = Vector2( 40, -14 )
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 0, 16, 16, 16 )
-region_filter_clip = true
+[node name="Inv" parent="." instance=ExtResource( 4 )]
+position = Vector2( 53.668, 444.148 )
+texture = ExtResource( 5 )
+slot = 1
