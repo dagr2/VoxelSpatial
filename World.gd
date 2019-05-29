@@ -43,13 +43,12 @@ func _input(event):
         
         if Input.is_action_just_pressed("toggle_fullscreen"):
             OS.window_fullscreen = !OS.window_fullscreen              
-          
+            $Player/Camera/Cross.position= get_viewport().size/2.0# OS.window_size/2.0
+            
         if event.scancode==KEY_F2:
             pass
           #$Level.save_chunk()
 
-        if event.scancode==KEY_F5:
-          OS.window_fullscreen = !OS.window_fullscreen
 
         if event.scancode==KEY_0:
           arr[0]="0"

@@ -14,59 +14,33 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_align = 0
 
-[node name="Tab1" type="GridContainer" parent="Tabs"]
+[node name="SettingTab1" type="VBoxContainer" parent="Tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
-columns = 2
 
-[node name="Label" type="Label" parent="Tabs/Tab1"]
-margin_top = 1.0
+[node name="cntChunks" type="HBoxContainer" parent="Tabs/SettingTab1"]
+margin_right = 1016.0
+margin_bottom = 14.0
+
+[node name="lblChunks" type="Label" parent="Tabs/SettingTab1/cntChunks"]
 margin_right = 93.0
-margin_bottom = 15.0
+margin_bottom = 14.0
 text = "Visible Chunks"
 
-[node name="Chunks" type="HSlider" parent="Tabs/Tab1"]
+[node name="scrlChunks" type="HScrollBar" parent="Tabs/SettingTab1/cntChunks"]
 margin_left = 97.0
-margin_right = 397.0
-margin_bottom = 16.0
+margin_right = 297.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 200, 0 )
+max_value = 15.0
+step = 1.0
 
-[node name="Label2" type="Label" parent="Tabs/Tab1"]
-margin_top = 20.0
-margin_right = 93.0
-margin_bottom = 34.0
-text = "Visible Chunks"
-
-[node name="GridContainer2" type="GridContainer" parent="Tabs"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-columns = 2
-
-[node name="Tree" type="Tree" parent="Tabs/GridContainer2"]
-margin_right = 1.0
-margin_bottom = 1.0
-
-[node name="Button2" type="Button" parent="Tabs/GridContainer2/Tree"]
-margin_left = 62.0
-margin_top = 28.0
-margin_right = 266.0
-margin_bottom = 48.0
-text = "333333333333333333333333"
-
-[node name="GridContainer3" type="GridContainer" parent="Tabs"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-columns = 2
+[node name="lblChunkCount" type="Label" parent="Tabs/SettingTab1/cntChunks"]
+margin_left = 301.0
+margin_right = 301.0
+margin_bottom = 14.0
+[connection signal="scrolling" from="Tabs/SettingTab1/cntChunks/scrlChunks" to="." method="_on_scrlChunks_scrolling"]

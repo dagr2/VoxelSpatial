@@ -52,7 +52,7 @@ class Octet:
         else:
           return subs[[sx,sy,sz]].get_block(pos)
     else:
-      print(str(pos)+" is not in")
+      #print(str(pos)+" is not in")
       return 0
   
   func set_block(pos,val):

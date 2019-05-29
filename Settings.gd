@@ -6,12 +6,17 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  #get_node("Tabs/SettingTab1/cntChunks/scrlChunks").value=get_node("/root/global_settings").vchunks
   pass
   #$Tabs/Tab1/Chunks.
 
 func _input(event):
   if Input.is_action_just_pressed("ui_cancel"):
     get_tree().change_scene("res://MainMenu.tscn")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  pass
+
+
+
+func _on_scrlChunks_scrolling():
+    var val=get_node("Tabs/SettingTab1/cntChunks/scrlChunks").value
+    get_node("/root/global_settings").vchunks=val
+    get_node("Tabs/SettingTab1/cntChunks/lblChunkCount").text=str(val)

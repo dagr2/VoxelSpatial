@@ -71,21 +71,25 @@ func clicked_at(hit):
   var bnum=Vector3(round(center.x*8),round(center.y*8),round(center.z*8))
   bnum=bpos
   var side=get_side(norm)
-  var v=0
-  if hit.button==1:
+  var v=-1
+  if hit.button==BUTTON_LEFT:
      v=1
-  if side==0:
-    SetBlock(bnum.x,bnum.y+v,bnum.z,v)
-  if side==1:
-    SetBlock(bnum.x,bnum.y-v,bnum.z,v)
-  if side==2:
-    SetBlock(bnum.x,bnum.y,bnum.z-v,v)
-  if side==3:
-    SetBlock(bnum.x,bnum.y,bnum.z+v,v)
-  if side==4:
-    SetBlock(bnum.x-v,bnum.y,bnum.z,v)
-  if side==5:
-    SetBlock(bnum.x+v,bnum.y,bnum.z,v)
+  elif hit.button==BUTTON_RIGHT:
+    v=0
+    
+  if v>=0:
+    if side==0:
+      SetBlock(bnum.x,bnum.y+v,bnum.z,v)
+    if side==1:
+      SetBlock(bnum.x,bnum.y-v,bnum.z,v)
+    if side==2:
+      SetBlock(bnum.x,bnum.y,bnum.z-v,v)
+    if side==3:
+      SetBlock(bnum.x,bnum.y,bnum.z+v,v)
+    if side==4:
+      SetBlock(bnum.x-v,bnum.y,bnum.z,v)
+    if side==5:
+      SetBlock(bnum.x+v,bnum.y,bnum.z,v)
 
   #print("Global pos: "+str(pos))
   #print("Local pos: "+str(lpos))
@@ -111,12 +115,8 @@ func SetBlock(x,y,z,v):
     y=0
   if z==-0:
     z=0
-  print("Set block at "+str(x)+", "+str(y)+", "+str(z)+", ")
-  
-  #
-  #blocks[str(x)+","+str(y)+","+str(z)]=v
+
   oct.set_block(Vector3(x,y,z),v)
-  #t.start(self,"BuildGeometry")
   #BuildGeometry(0)
   
 func GetBlock(x,y,z):
@@ -142,6 +142,7 @@ func BuildGeometryAsync():
   t.start(self,"BuildGeometry")
   
 func BuildGeometry(i):
+  var f=global_settings.start("BuildGeometry")
   var verts=[]
   var cnt=8
   var w=BlockWidth # 1.0/cnt
@@ -236,4 +237,4 @@ func BuildGeometry(i):
   st.generate_normals()
   st.set_material(mat)        
   meshInstance.mesh=st.commit()
-  print(str(drawn)+" blocks drawn")    
+  global_settings.pstop(f)
