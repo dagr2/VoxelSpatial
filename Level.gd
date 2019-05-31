@@ -14,7 +14,10 @@ func _ready():
     #pass
 func save_chunk(filename):
   chunk.save_chunk(filename)
-
+  
+func set_block(x,y,z,v):
+  chunk.SetBlock(x,y,z,v)
+  
 func load_chunk(filename):
   chunk.load_chunk(filename)
 # Called every frame. 'delta' is the elapsed time since the previous frame.

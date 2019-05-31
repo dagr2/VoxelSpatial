@@ -7,7 +7,11 @@ var ChunkLoader = load("res://ChunkLoader.gd")
 var chunkloader
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   chunkloader = ChunkLoader.new()
+  #chunkloader.AddChunk(0,0)
+  #chunkloader.set_block(1,1,1,1)
+  
   add_child(chunkloader)
 
 func get_chunkloader():
