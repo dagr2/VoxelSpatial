@@ -15,5 +15,5 @@ func get_block(x,y,z):
   if y>h or y<0 or y>15:
     return 0
   else:
-    var v=(noise2.get_noise_3d(x*scale2,y*scale2,z*scale2)+1)/2*BLOCKS
+    var v=(noise2.get_noise_3d(x*scale2,y*scale2,z*scale2)+1)/2*BLOCKS+1
     return v
