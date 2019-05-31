@@ -48,8 +48,6 @@ func _init(cl,pos,s):
   add_child(collisionShape)
   add_child(meshInstance)
 
-
-
 func get_side(norm):
     if norm==Vector3(0,1,0):
         return 0

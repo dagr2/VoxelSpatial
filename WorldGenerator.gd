@@ -1,8 +1,15 @@
 extends Node
+
+var scale=1.0
+var scale2 = 0.5
+var height=15
+var BLOCKS=3
+
 var scale=0.1
 var scale2 = 0.05
 var height=8
 var BLOCKS=5
+
 
 var noise2=OpenSimplexNoise.new()
 
@@ -15,5 +22,5 @@ func get_block(x,y,z):
   if y>h or y<0 or y>15:
     return 0
   else:
-    var v=(noise2.get_noise_3d(x*scale2,y*scale2,z*scale2)+1)/2*BLOCKS+1
+    var v=floor((noise2.get_noise_3d(x*scale2,y*scale2,z*scale2)+1.0)/2.0*(BLOCKS-1)+1.0)
     return v

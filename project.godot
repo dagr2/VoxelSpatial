@@ -91,3 +91,8 @@ toggle_fullscreen={
 
 3d/physics_engine="Bullet"
 3d/active_soft_world=false
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+quality/filters/use_nearest_mipmap_filter=true
