@@ -7,13 +7,13 @@ export(int) var Blocks=16
 const tcoords=[
   Vector2(0,0),
 ]
-
+var loader=get_parent()
 var blocks = {}
 var collisionShape = CollisionShape.new()
 var meshInstance=MeshInstance.new()
 var mat = load("res://mat1.tres")
 var oct = load("res://Octree.gd").new(Vector3(-Blocks/2,-Blocks/2,-Blocks/2),Vector3(Blocks,Blocks,Blocks))
-
+  
 func save_chunk(filename):
   var f=File.new()
   f.open(filename,File.WRITE)
@@ -41,15 +41,12 @@ func load_chunk(filename):
     f.close()
     BuildGeometry(0)
   
-func _init(pos,s):
+func _init(cl,pos,s):
   var Octree =load("res://Octree.gd")
+  loader=cl
   oct = Octree.new(pos,s)  
   add_child(collisionShape)
   add_child(meshInstance)
-
-func _ready():
-  pass
-
 
 func get_side(norm):
     if norm==Vector3(0,1,0):
@@ -86,23 +83,29 @@ func clicked_at(hit):
     
   if v>=0:
     if side==0:
-      SetBlock(bnum.x,bnum.y+n,bnum.z,v)
+      loader.set_block(bnum.x,bnum.y+n,bnum.z,v)
+      #loader.set_block(pos.x,pos.y+n,pos.z,v)
     if side==1:
-      SetBlock(bnum.x,bnum.y-n,bnum.z,v)
+      loader.set_block(bnum.x,bnum.y-n,bnum.z,v)
+      #loader.set_block(pos.x,pos.y-n,pos.z,v)
     if side==2:
-      SetBlock(bnum.x,bnum.y,bnum.z-n,v)
+      loader.set_block(bnum.x,bnum.y,bnum.z-n,v)
+      #loader.set_block(pos.x,pos.y,pos.z-n,v)
     if side==3:
-      SetBlock(bnum.x,bnum.y,bnum.z+n,v)
+      loader.set_block(bnum.x,bnum.y,bnum.z+n,v)
+      #loader.set_block(pos.x,pos.y,pos.z+n,v)
     if side==4:
-      SetBlock(bnum.x-n,bnum.y,bnum.z,v)
+      loader.set_block(bnum.x-n,bnum.y,bnum.z,v)
+      #loader.set_block(pos.x-n,pos.y,pos.z,v)
     if side==5:
-      SetBlock(bnum.x+n,bnum.y,bnum.z,v)
+      loader.set_block(bnum.x+n,bnum.y,bnum.z,v)
+      #loader.set_block(pos.x+n,pos.y,pos.z,v)
 
   #print("Global pos: "+str(pos))
   #print("Local pos: "+str(lpos))
   #print("Center pos: "+str(center))
   #print("Block pos: "+str(bpos))
-  #print("Block num: "+str(bnum))
+  print("Block num: "+str(bnum))
   #print("Button: "+str(hit.button))
 
   BuildGeometry(0)
@@ -116,6 +119,7 @@ func set_ready(b):
     
 var threads=[]
 func SetBlock(x,y,z,v):
+  #print("set "+str([x,y,z])+" to "+str(v))
   if x==-0:
     x=0
   if y==-0:
@@ -127,10 +131,12 @@ func SetBlock(x,y,z,v):
   #BuildGeometry(0)
   
 func GetBlock(x,y,z):
-  return oct.get_block(Vector3(x,y,z))
-  if blocks.has(str(x)+","+str(y)+","+str(z)):
-    return blocks[str(x)+","+str(y)+","+str(z)]
+  var b= oct.get_block(Vector3(x,y,z))
+  #print([x,y,z,b])
+  if b>=0:
+    return b
   else:
+    #b= loader.get_wg().get_block(x,y,z)
     return 0
 
 func coord(bt,s,x,y):
@@ -157,6 +163,9 @@ func BuildGeometry(i):
   var drawn=0
   
   var all=oct.get_blocks()
+  #print("Blocks: "+str(all))
+  if all==[]:
+    return
   for block in all:
     #var block=all[i]
     var x=block.pos.x
@@ -240,14 +249,12 @@ func BuildGeometry(i):
   st.begin(Mesh.PRIMITIVE_TRIANGLES)
   for vert in verts:
     st.add_uv(vert[1])
-    st.add_normal(vert[2])
     st.add_vertex(vert[0])
   var ii=0
   for vert in verts:
     st.add_index(ii)
     ii+=1
-  #st.generate_normals()
-  st.generate_tangents()
+  st.generate_normals()
   st.set_material(mat)        
   meshInstance.mesh=st.commit()
   global_settings.pstop(f)

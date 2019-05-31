@@ -48,7 +48,7 @@ class Octet:
         return block
       else:
         if not subs.has([sx,sy,sz]):
-          return 0
+          return -1
         else:
           return subs[[sx,sy,sz]].get_block(pos)
     else:

@@ -12,7 +12,7 @@ export(int,0,15) var vchunks=1 setget set_vchunks,get_vchunks
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    pass
 
 func get_vchunks():
     return _vchunks
@@ -35,3 +35,5 @@ func pstop(f):
   var d=stop(f)
   if d>1:
     print(f+" took "+str(d)+"ms")
+    
+ 

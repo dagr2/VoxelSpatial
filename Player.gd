@@ -18,7 +18,7 @@ var colpos
 var colnorm
 var game
 func _ready():
-  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+  #Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   global_settings.player=self
 
   $Camera/Cross.position.x=OS.window_size.x/2

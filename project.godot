@@ -94,4 +94,5 @@ toggle_fullscreen={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/filters/use_nearest_mipmap_filter=true
