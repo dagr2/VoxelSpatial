@@ -1,8 +1,15 @@
 extends Node
+
 var scale=1.0
 var scale2 = 0.5
 var height=15
 var BLOCKS=3
+
+var scale=0.1
+var scale2 = 0.05
+var height=8
+var BLOCKS=5
+
 
 var noise2=OpenSimplexNoise.new()
 
