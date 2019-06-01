@@ -1,17 +1,11 @@
 extends Spatial
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var ChunkLoader = load("res://ChunkLoader.gd")
+var ChunkLoader=load("res://ChunkLoader2.gd")
 var chunkloader
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-  Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+  #Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
   chunkloader = ChunkLoader.new()
-  #chunkloader.AddChunk(0,0)
-  #chunkloader.set_block(1,1,1,1)
-  
   add_child(chunkloader)
 
 func get_chunkloader():
@@ -29,6 +23,3 @@ func _input(event):
         if event is InputEventKey and event.is_pressed():
             if event.scancode==KEY_F1:
                 $Settings.visible=true   
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  pass

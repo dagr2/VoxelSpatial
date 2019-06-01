@@ -108,7 +108,7 @@ func clicked_at(hit):
   print("Block num: "+str(bnum))
   #print("Button: "+str(hit.button))
 
-  BuildGeometry(0)
+  BuildGeometryAsync()
 
 var _ready
 func is_ready():
@@ -173,12 +173,12 @@ func BuildGeometry(i):
     var z=block.pos.z
     if true:    
         var b=block.value
-        var btop=GetBlock(x,y+1,z)
-        var bbot=GetBlock(x,y-1,z)
-        var bfront=GetBlock(x,y,z-1)
-        var bback=GetBlock(x,y,z+1)
-        var bleft=GetBlock(x-1,y,z)
-        var bright=GetBlock(x+1,y,z)
+        var btop=loader.get_block(x,y+1,z)
+        var bbot=loader.get_block(x,y-1,z)
+        var bfront=loader.get_block(x,y,z-1)
+        var bback=loader.get_block(x,y,z+1)
+        var bleft=loader.get_block(x-1,y,z)
+        var bright=loader.get_block(x+1,y,z)
         if b>0:
             drawn+=1
         #top

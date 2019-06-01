@@ -16,26 +16,14 @@ func _input(event):
         if Input.is_action_just_pressed("toggle_fullscreen"):
             OS.window_fullscreen = !OS.window_fullscreen
         
-func _process(delta):
-    pass
-        
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
-
-
 func _on_BtnPaint_pressed():
     get_tree().change_scene("res://World.tscn")
-
 
 func _on_BtnExit_pressed():
     get_tree().quit()
 
-
 func _on_BtnPlay_pressed():
     get_tree().change_scene("res://Game.tscn")
-
 
 func _on_BtnSettings_pressed():
   get_tree().change_scene("res://Settings.tscn")

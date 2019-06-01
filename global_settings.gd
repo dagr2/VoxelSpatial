@@ -1,21 +1,30 @@
 extends Node
 
 var _vchunks
+var times={}
 var player
 
-var times={}
+var chunks={}
+var cmutex=Mutex.new()
 
-export(int,0,15) var vchunks=1 setget set_vchunks,get_vchunks
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass
-
-func get_vchunks():
-    return _vchunks
+func has_chunk(k):
+  cmutex.lock()
+  var res=false
+  if chunks.has(k):
+    res=true
+  cmutex.unlock()
+  return res
+  
+func set_chunk(k,v):
+  cmutex.lock()
+  chunks[k]=v
+  cmutex.unlock()
+  
+func get_chunk(k):
+  cmutex.lock()
+  var res=chunks[k]
+  cmutex.unlock()
+  return res
     
 func set_vchunks(c):
     _vchunks=c

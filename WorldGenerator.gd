@@ -1,14 +1,10 @@
 extends Node
 
-var scale=1.0
-var scale2 = 0.5
+var scale=2.0
+var scale2 = 0.9
 var height=15
-var BLOCKS=3
+var BLOCKS=8
 
-var scale=0.1
-var scale2 = 0.05
-var height=8
-var BLOCKS=5
 
 
 var noise2=OpenSimplexNoise.new()
@@ -18,6 +14,7 @@ func get_height(x,z):
   return h
   
 func get_block(x,y,z):
+  #return 1
   var h=get_height(x,z)
   if y>h or y<0 or y>15:
     return 0

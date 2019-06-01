@@ -29,13 +29,13 @@ func test_ray():
   var ray=$Camera/RayCast
   var target=get_parent().get_node("Target")
   if ray.is_colliding():
-    target.show()
+    #target.show()
     hit["collider"]=ray.get_collider()
     hit["position"]=ray.get_collision_point()
     hit["normal"]=ray.get_collision_normal()
     target.translation=ray.get_collision_point()
   else:
-    target.hide()
+    #target.hide()
     hit={}
     
 var slot=0
